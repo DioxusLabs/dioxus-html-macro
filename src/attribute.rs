@@ -26,7 +26,7 @@ impl ToTokens for Attribute {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         let Attribute { name, value, .. } = self;
         tokens.extend(quote! {
-            #name: #value,
+            #name: #value
         });
     }
 }

@@ -7,7 +7,7 @@ use syn::token::Brace;
 use syn::LitStr;
 use Item::*;
 
-enum Item {
+pub enum Item {
     Element(Element),
     Expr(RsxExpr),
 }

@@ -28,7 +28,7 @@ impl ToTokens for RsxExpr {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         match self {
             RsxExpr::LitStr(lit) => tokens.extend(quote!(#lit)),
-            RsxExpr::Expr { brace, expr } => tokens.extend(quote!(#expr)),
+            RsxExpr::Expr { expr, .. } => tokens.extend(quote!({#expr})),
         }
     }
 }

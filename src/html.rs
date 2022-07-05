@@ -1,11 +1,11 @@
-use crate::element::Element;
+use crate::item::Item;
 use proc_macro2::TokenStream;
 use quote::ToTokens;
 use syn::parse::Parse;
 
 #[derive(Default)]
 pub struct Html {
-    pub elements: Vec<Element>,
+    pub elements: Vec<Item>,
 }
 
 impl Parse for Html {
@@ -14,7 +14,6 @@ impl Parse for Html {
         while !input.is_empty() && !input.peek2(Token![/]) {
             elements.push(input.parse()?);
         }
-
         Ok(Html { elements })
     }
 }
