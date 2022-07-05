@@ -1,6 +1,6 @@
-use proc_macro2::TokenStream;
+use proc_macro2::{Span, TokenStream};
 use quote::ToTokens;
-use syn::{parse::Parse, token::Brace, Expr, LitStr};
+use syn::{parse::Parse, spanned::Spanned, token::Brace, Expr, LitStr};
 
 pub enum RsxExpr {
     LitStr(LitStr),
@@ -30,5 +30,17 @@ impl ToTokens for RsxExpr {
             RsxExpr::LitStr(lit) => tokens.extend(quote!(#lit)),
             RsxExpr::Expr { expr, .. } => tokens.extend(quote!({#expr})),
         }
+    }
+}
+
+impl RsxExpr {
+    pub fn span(&self) -> Span {
+        match self {
+            RsxExpr::Expr { expr, .. } => expr.span(),
+            RsxExpr::LitStr(lit) => lit.span(),
+        }
+    }
+    pub fn is_str(&self) -> bool {
+        matches!(self, RsxExpr::LitStr(_))
     }
 }

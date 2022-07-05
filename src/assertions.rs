@@ -1,13 +1,10 @@
 use crate::close_tag::CloseTag;
 use crate::element::closing;
-use proc_macro2::TokenStream;
-use quote::ToTokens;
 use syn::parse::Parse;
 
-
-/// This struct is used to make sure there are no trailing 
-/// closing html tags. Without this, the error message for 
-/// `<div></div></div>` wouldn't be very useful. 
+/// This struct is used to make sure there are no trailing
+/// closing html tags. Without this, the error message for
+/// `<div></div></div>` wouldn't be very useful.
 pub struct AssertStreamIsEmpty {
     _option: Option<CloseTag>,
 }

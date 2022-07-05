@@ -11,6 +11,7 @@ use syn::parse::Parse;
 
 mod assertions;
 mod attribute;
+mod attribute_ident;
 mod attributes;
 mod close_tag;
 mod element;
@@ -29,7 +30,6 @@ pub fn html(input: TokenStream) -> TokenStream {
     }
     .into()
 }
-
 
 /// Unlike Html, HtmlNonRecursive attepts to consume
 /// the entire stream, and errors if it fails.

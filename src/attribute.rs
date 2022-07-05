@@ -1,24 +1,28 @@
+use crate::attribute_ident::AttributeIdent;
 use crate::rsx_expr::RsxExpr;
-use proc_macro2::{Ident, TokenStream};
+use proc_macro2::TokenStream;
 use quote::ToTokens;
-use syn::parse::Parse;
+use syn::parse::*;
+use syn::*;
+
 pub struct Attribute {
-    pub name: Ident,
+    pub name: AttributeIdent,
     pub equals: Token![=],
     pub value: RsxExpr,
 }
 
 impl Parse for Attribute {
-    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+    fn parse(input: ParseStream) -> Result<Self> {
         let name = input.parse()?;
         let equals = input.parse()?;
         let value = input.parse()?;
-
-        Ok(Attribute {
+        let attr = Attribute {
             name,
             equals,
             value,
-        })
+        };
+        attr.validate()?;
+        Ok(attr)
     }
 }
 
@@ -28,5 +32,19 @@ impl ToTokens for Attribute {
         tokens.extend(quote! {
             #name: #value
         });
+    }
+}
+
+impl Attribute {
+    fn validate(&self) -> Result<()> {
+        if !self.name.is_ident() && !self.value.is_str() {
+            return Err(
+                Error::new(
+                    self.value.span(),
+                "expected a string literal."
+            )
+        );
+        }
+        Ok(())
     }
 }

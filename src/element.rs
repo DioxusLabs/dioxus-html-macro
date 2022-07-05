@@ -1,6 +1,6 @@
 use crate::close_tag::CloseTag;
-use crate::open_tag::OpenTag;
 use crate::html::Html;
+use crate::open_tag::OpenTag;
 use proc_macro2::{Ident, TokenStream};
 use quote::ToTokens;
 
@@ -16,18 +16,15 @@ pub struct Element {
 impl Parse for Element {
     fn parse(input: ParseStream) -> syn::Result<Self> {
         let fork = input.fork();
-        
+
         let open_tag: OpenTag = input.parse().map_err(|err| unmatched_msg(err, &&fork))?;
-        
+
         let mut html = Default::default();
         let mut close_tag = None;
         if open_tag.fslash.is_none() {
-            
             html = input.parse()?;
-            
-            
+
             close_tag = Some(input.parse().map_err(|_| opening(&open_tag.tagname))?);
-            
         }
 
         let element = Element {
@@ -77,7 +74,7 @@ impl Element {
 fn unmatched_msg(error: Error, fork: &ParseStream) -> Error {
     match fork.parse::<CloseTag>() {
         Ok(tag) => closing(&tag.tagname),
-        Err(error) => error,
+        Err(_) => error,
     }
 }
 
