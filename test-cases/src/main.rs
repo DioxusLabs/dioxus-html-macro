@@ -1,9 +1,13 @@
 use dioxus_html_rsx::html;
+use dioxus::prelude::*; 
 
 fn foo() {
-    html!();
-
-    xml!(<div attr="asd" id={1}></div>); 
+    
+    let x = 10; 
+    rsx! {div {
+        "number: {x}"
+    }};
+    html!(<div>"number: {x}"</div>); 
 }
 
 fn main() {}
