@@ -1,32 +1,27 @@
+use dioxus::prelude::*;
 use dioxus_html_rsx::html;
-use dioxus::prelude::*; 
 
-fn foo() {
-    
-    let color = "red"; 
+fn app_rsx(cx: Scope) -> Element {
+    let mut count = use_state(&cx, || 0);
 
-    rsx! {
-        div {
-            h1 {
-                "Lorem ipsum dolor sit"
-            }
-            p {
-                "amet consectetur adipisicing elit."
-            }
-            img {
-                src: "https://example.com", 
-                alt: "Facilis harum sequi", 
-            }
-        }
-    }; 
-    html!(
-        <div>
-        <h1>"Lorem ipsum dolor sit"</h1> 
-            <p>"amet consectetur adipisicing elit."</p>
-            <img src="https://example.com" alt="Facilis harum sequi"/>
-        </div>
-    ); 
-    
+    cx.render(rsx!(
+        h1 { "High-Five counter: {count}" }
+        button { onclick: move |_| count += 1, "Up high!" }
+        button { onclick: move |_| count -= 1, "Down low!" }
+    ))
 }
 
-fn main() {}
+fn app_html(cx: Scope) -> Element {
+    let mut count = use_state(&cx, || 0);
+    
+    cx.render(html!(
+        <h1>"High-Five counter: {count}"</h1>
+        <button onclick={move |_| count += 1} color="red">"Up high!"</button>
+        <button onclick={move |_| count -= 1}>"Down low!"</button>
+    ))
+}
+
+fn main() {
+
+    dioxus::desktop::launch(app_html); 
+}
