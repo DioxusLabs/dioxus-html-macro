@@ -1,5 +1,7 @@
 use crate::prelude::*; 
 
+/// An HTML element is composed of an
+/// opening tag, an HTML body, and a closing tag. 
 pub struct Element {
     open_tag: OpenTag,
     html: Html,

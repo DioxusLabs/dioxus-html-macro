@@ -1,5 +1,8 @@
 use crate::prelude::*; 
-
+/// An attribute can have one of the 
+/// following two structures: 
+/// * `ident=value`
+/// * `"custom-attr"="string-lit"
 pub struct Attribute {
     pub name: AttributeIdent,
     pub equals: Token![=],

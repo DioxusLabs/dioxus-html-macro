@@ -1,7 +1,8 @@
 use crate::prelude::*; 
 
 
-
+/// represents a `<name attr="val" [/]>` part of 
+/// an HTML element. 
 pub struct OpenTag {
     pub open_angle: Token![<],
     pub name: Ident,

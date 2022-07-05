@@ -2,6 +2,8 @@ use proc_macro2::Span;
 use syn::{token::Brace, spanned::Spanned};
 use crate::prelude::*;
 
+/// An RSX expression can either be a string literal, 
+/// or any rust expression inside curly braces. 
 pub enum RsxExpr {
     LitStr(LitStr),
     Expr { brace: Brace, expr: Expr },

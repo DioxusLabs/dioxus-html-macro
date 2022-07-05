@@ -4,6 +4,8 @@ use crate::rsx_expr::RsxExpr;
 use syn::token::Brace;
 use Item::*;
 
+/// An Item can either be an rsx expression or an
+/// html element. 
 pub enum Item {
     Element(Element),
     Expr(RsxExpr),
