@@ -3,7 +3,7 @@ use dioxus_html_rsx::html;
 fn foo() {
     html!();
 
-    html!(<div></div></bar>); 
+    xml!(<div attr="asd" id={1}></div>); 
 }
 
 fn main() {}
