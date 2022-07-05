@@ -3,7 +3,7 @@
 This crate offers an `html!` like macro for 
 dioxus applications. It expands to the equivalent `rsx!` macro
 call you would have made otherwise, so it does not rely on any 
-dioxus internals. 
+dioxus' internals. 
 ```rust
 fn app(cx: Scope) -> Element {
     let mut count = use_state(&cx, || 0);
