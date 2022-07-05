@@ -1,12 +1,5 @@
-use crate::close_tag::CloseTag;
-use crate::html::Html;
-use crate::open_tag::OpenTag;
-use proc_macro2::{Ident, TokenStream};
-use quote::ToTokens;
+use crate::prelude::*; 
 
-use syn::parse::Parse;
-use syn::parse::ParseStream;
-use syn::Error;
 pub struct Element {
     open_tag: OpenTag,
     html: Html,
@@ -14,7 +7,7 @@ pub struct Element {
 }
 
 impl Parse for Element {
-    fn parse(input: ParseStream) -> syn::Result<Self> {
+    fn parse(input: ParseStream) -> Result<Self> {
         let fork = input.fork();
 
         let open_tag: OpenTag = input.parse().map_err(|err| unmatched_msg(err, &&fork))?;
@@ -58,7 +51,7 @@ impl ToTokens for Element {
 }
 
 impl Element {
-    fn validate(&self) -> Result<(), syn::Error> {
+    fn validate(&self) -> Result<()> {
         let name = &self.open_tag.tagname;
         match &self.close_tag {
             Some(tag) if tag.tagname != *name => {

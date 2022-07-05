@@ -1,6 +1,7 @@
+use crate::prelude::*; 
 use crate::close_tag::CloseTag;
 use crate::element::closing;
-use syn::parse::Parse;
+
 
 /// This struct is used to make sure there are no trailing
 /// closing html tags. Without this, the error message for
@@ -10,7 +11,7 @@ pub struct AssertStreamIsEmpty {
 }
 
 impl Parse for AssertStreamIsEmpty {
-    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+    fn parse(input: ParseStream) -> Result<Self> {
         if input.is_empty() {
             return Ok(AssertStreamIsEmpty { _option: None });
         } else {

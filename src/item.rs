@@ -1,10 +1,7 @@
 use crate::element::Element;
+use crate::prelude::*;
 use crate::rsx_expr::RsxExpr;
-use proc_macro2::TokenStream;
-use quote::ToTokens;
-use syn::parse::Parse;
 use syn::token::Brace;
-use syn::LitStr;
 use Item::*;
 
 pub enum Item {

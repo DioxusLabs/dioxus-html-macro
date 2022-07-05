@@ -1,11 +1,9 @@
-use crate::attribute::Attribute;
-use proc_macro2::TokenStream;
-use quote::ToTokens;
-use syn::parse::Parse;
+use crate::prelude::*; 
+
 pub struct Attributes(Vec<Attribute>);
 
 impl Parse for Attributes {
-    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+    fn parse(input: ParseStream) -> Result<Self> {
         let mut attrs = vec![];
         loop {
             if input.peek(Token![/]) || input.peek(Token![>]) {

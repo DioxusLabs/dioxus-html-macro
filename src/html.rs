@@ -1,7 +1,4 @@
-use crate::item::Item;
-use proc_macro2::TokenStream;
-use quote::ToTokens;
-use syn::parse::Parse;
+use crate::prelude::*;
 
 #[derive(Default)]
 pub struct Html {

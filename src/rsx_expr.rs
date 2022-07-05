@@ -1,6 +1,6 @@
-use proc_macro2::{Span, TokenStream};
-use quote::ToTokens;
-use syn::{parse::Parse, spanned::Spanned, token::Brace, Expr, LitStr};
+use proc_macro2::Span;
+use syn::{token::Brace, spanned::Spanned};
+use crate::prelude::*;
 
 pub enum RsxExpr {
     LitStr(LitStr),
@@ -8,7 +8,7 @@ pub enum RsxExpr {
 }
 
 impl Parse for RsxExpr {
-    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+    fn parse(input: ParseStream) -> Result<Self> {
         let expr = match input.parse() {
             Ok(lit) => RsxExpr::LitStr(lit),
             Err(_) => {

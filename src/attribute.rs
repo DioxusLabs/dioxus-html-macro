@@ -1,9 +1,4 @@
-use crate::attribute_ident::AttributeIdent;
-use crate::rsx_expr::RsxExpr;
-use proc_macro2::TokenStream;
-use quote::ToTokens;
-use syn::parse::*;
-use syn::*;
+use crate::prelude::*; 
 
 pub struct Attribute {
     pub name: AttributeIdent,

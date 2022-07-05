@@ -1,6 +1,6 @@
-use crate::attributes::Attributes;
-use proc_macro2::Ident;
-use syn::parse::Parse;
+use crate::prelude::*; 
+
+
 
 pub struct OpenTag {
     pub open_angle: Token![<],
@@ -11,7 +11,7 @@ pub struct OpenTag {
 }
 
 impl Parse for OpenTag {
-    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+    fn parse(input: ParseStream) -> Result<Self> {
         let open_angle = input.parse()?;
         let tagname = input.parse()?;
         let attributes = input.parse()?;
