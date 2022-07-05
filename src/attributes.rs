@@ -9,7 +9,6 @@ impl Parse for Attributes {
         let mut attrs = vec![];
         loop {
             if input.peek(Token![/]) || input.peek(Token![>]) {
-                println!("ATTR LEN {}", attrs.len());
                 break Ok(Attributes(attrs));
             }
             let attr = input.parse()?;

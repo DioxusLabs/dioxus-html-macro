@@ -29,6 +29,8 @@ pub fn html(input: TokenStream) -> TokenStream {
     }
     .into()
 }
+
+
 /// Unlike Html, HtmlNonRecursive attepts to consume
 /// the entire stream, and errors if it fails.
 struct HtmlNonRecursive {

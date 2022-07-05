@@ -98,9 +98,3 @@ fn opening(name: &Ident) -> Error {
         ),
     )
 }
-
-#[test]
-fn parse_str() {
-    let html: Html = syn::parse_str("<html>  </html>").unwrap();
-    
-}
