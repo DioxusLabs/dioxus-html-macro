@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use dioxus_html_rsx::html;
+use dioxus_html_macro::html;
 
 fn app(cx: Scope) -> Element {
     let mut count = use_state(&cx, || 0);

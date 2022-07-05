@@ -14,10 +14,10 @@ impl Parse for Element {
 
         let mut html = Default::default();
         let mut close_tag = None;
-        if open_tag.fslash.is_none() {
+        if open_tag.slash.is_none() {
             html = input.parse()?;
 
-            close_tag = Some(input.parse().map_err(|_| opening(&open_tag.tagname))?);
+            close_tag = Some(input.parse().map_err(|_| opening(&open_tag.name))?);
         }
 
         let element = Element {
@@ -36,13 +36,13 @@ impl ToTokens for Element {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         let Element { open_tag, html, .. } = self;
         let OpenTag {
-            tagname,
+            name,
             attributes,
             ..
         } = open_tag;
 
         tokens.extend(quote! {
-            #tagname {
+            #name {
                 #attributes
                 #html
             }
@@ -52,11 +52,11 @@ impl ToTokens for Element {
 
 impl Element {
     fn validate(&self) -> Result<()> {
-        let name = &self.open_tag.tagname;
+        let name = &self.open_tag.name;
         match &self.close_tag {
-            Some(tag) if tag.tagname != *name => {
+            Some(tag) if tag.name != *name => {
                 let mut error = opening(name);
-                error.combine(closing(&tag.tagname));
+                error.combine(closing(&tag.name));
                 Err(error)
             }
             _ => Ok(()),
@@ -66,7 +66,7 @@ impl Element {
 
 fn unmatched_msg(error: Error, fork: &ParseStream) -> Error {
     match fork.parse::<CloseTag>() {
-        Ok(tag) => closing(&tag.tagname),
+        Ok(tag) => closing(&tag.name),
         Err(_) => error,
     }
 }

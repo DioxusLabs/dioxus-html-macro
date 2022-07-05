@@ -1,3 +1,4 @@
+#![doc = include_str!("../README.md")]
 #[macro_use]
 extern crate syn;
 #[macro_use]
@@ -19,6 +20,9 @@ mod open_tag;
 mod prelude;
 mod rsx_expr;
 
+
+
+/// macro for generating components using HTML syntax instead of rsx. 
 #[proc_macro]
 pub fn html(input: TokenStream) -> TokenStream {
     let html: HtmlNonRecursive = parse_macro_input!(input);

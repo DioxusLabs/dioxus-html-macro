@@ -2,22 +2,22 @@ use crate::prelude::*;
 
 pub struct CloseTag {
     pub open_angle: Token![<],
-    pub fslash: Token![/],
-    pub tagname: Ident,
+    pub slash: Token![/],
+    pub name: Ident,
     pub close_angle: Token![>],
 }
 
 impl Parse for CloseTag {
     fn parse(input: ParseStream) -> Result<Self> {
         let open_angle = input.parse()?;
-        let fslash = input.parse()?;
-        let tagname: Ident = input.parse()?;
+        let slash = input.parse()?;
+        let name: Ident = input.parse()?;
         let close_angle = input.parse()?;
 
         Ok(CloseTag {
             open_angle,
-            fslash,
-            tagname,
+            slash,
+            name,
             close_angle,
         })
     }

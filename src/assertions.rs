@@ -16,7 +16,7 @@ impl Parse for AssertStreamIsEmpty {
             return Ok(AssertStreamIsEmpty { _option: None });
         } else {
             let tag: CloseTag = input.parse()?;
-            Err(closing(&tag.tagname))
+            Err(closing(&tag.name))
         }
     }
 }
