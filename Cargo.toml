@@ -5,7 +5,7 @@ edition = "2021"
 license = "Apache-2.0"
 keywords = ["macro", "dioxus", "html", "rsx"]
 readme = "README.md"
-repository = "https://github.com/tvallotton/dioxus-html-macro"
+repository = "https://github.com/DioxusLabs/dioxus-html-macro"
 description = "An html macro for dioxus applications."
 authors = ["Tomas Vallotton <tvallotton@uc.cl>"]
 
@@ -14,6 +14,7 @@ authors = ["Tomas Vallotton <tvallotton@uc.cl>"]
 proc-macro = true
 
 [dependencies]
+dioxus = "0.2.4"
 proc-macro2 = "1.0.40"
 quote = "1.0.20"
 syn = {version = "1.0.98", features = ["full"]}
