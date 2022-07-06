@@ -21,3 +21,4 @@ syn = {version = "1.0.98", features = ["full"]}
 
 [dev-dependencies]
 dioxus = { version = "0.2.4", features = ["desktop"] }
+trybuild = "1.0.63"

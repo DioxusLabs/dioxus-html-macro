@@ -33,3 +33,13 @@ pub fn html(input: TokenStream) -> TokenStream {
     }
     .into()
 }
+
+#[cfg(test)]
+#[test]
+fn err_msgs() {
+    let t = trybuild::TestCases::new(); 
+    t.compile_fail("test/trailing_tag.rs"); 
+    t.compile_fail("test/extra_close_tag.rs"); 
+    t.compile_fail("test/missing_close_tag.rs"); 
+
+}
