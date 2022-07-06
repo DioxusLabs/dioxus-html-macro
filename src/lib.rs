@@ -60,12 +60,11 @@ pub fn html(input: TokenStream) -> TokenStream {
 
 #[cfg(test)]
 #[test]
-fn err_msgs() {
+fn trybuild() {
     let t = trybuild::TestCases::new();
     t.compile_fail("test/tag/trailing.rs");
     t.compile_fail("test/tag/extra_close.rs");
     t.compile_fail("test/tag/missing_close.rs");
-
 
     t.compile_fail("test/attribute/non_str_custom.rs");
     t.compile_fail("test/attribute/format_str.rs");
@@ -74,5 +73,6 @@ fn err_msgs() {
     t.pass("test/attribute/passes.rs");
 
     t.compile_fail("test/body/plain_text.rs");
-        t.pass("test/body/expression.rs");
+    t.pass("test/body/expression.rs");
+    t.pass("test/props/enum.rs");
 }
