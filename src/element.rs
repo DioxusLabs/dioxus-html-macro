@@ -11,9 +11,7 @@ pub struct Element {
 impl Parse for Element {
     fn parse(input: ParseStream) -> Result<Self> {
         let fork = input.fork();
-
         let open_tag: OpenTag = input.parse().map_err(|err| unmatched_msg(err, &&fork))?;
-
         let mut html = Default::default();
         let mut close_tag = None;
         if open_tag.slash.is_none() {
@@ -57,8 +55,7 @@ impl Element {
         let name = &self.open_tag.name;
         match &self.close_tag {
             Some(tag) if tag.name != *name => {
-                let mut error = opening(name);
-                error.combine(closing(&tag.name));
+                let error = opening(name);
                 Err(error)
             }
             _ => Ok(()),

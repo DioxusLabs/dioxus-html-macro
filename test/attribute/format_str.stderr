@@ -1,0 +1,12 @@
+error[E0277]: `Foo` doesn't implement `std::fmt::Display`
+  --> test/attribute/format_str.rs:7:5
+   |
+7  | /     html!(
+8  | |         <div "custom"="{Foo}">
+9  | |         </div>
+10 | |     );
+   | |_____^ `Foo` cannot be formatted with the default formatter
+   |
+   = help: the trait `std::fmt::Display` is not implemented for `Foo`
+   = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+   = note: this error originates in the macro `format_args` (in Nightly builds, run with -Z macro-backtrace for more info)

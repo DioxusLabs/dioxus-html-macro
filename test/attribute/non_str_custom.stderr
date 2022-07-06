@@ -1,0 +1,5 @@
+error: expected a string literal.
+ --> test/attribute/non_str_custom.rs:6:24
+  |
+6 |         <div "custom"={move |_| ()}>
+  |                        ^^^^

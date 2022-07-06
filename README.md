@@ -5,6 +5,9 @@ dioxus applications. It expands to the equivalent `rsx!` macro
 call you would have made otherwise, so it does not rely on any 
 dioxus' internals. 
 ```rust
+use dioxus::prelude::*; 
+use dioxus_html_macro::html; 
+
 fn app(cx: Scope) -> Element {
     let mut count = use_state(&cx, || 0);
     cx.render(html!(

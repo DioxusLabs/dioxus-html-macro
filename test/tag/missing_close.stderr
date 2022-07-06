@@ -1,5 +1,5 @@
 error: encountered an opening HTML element "h1" without a corresponding closing tag.
- --> test/missing_close_tag.rs:6:14
+ --> test/tag/missing_close.rs:6:14
   |
 6 |             <h1>"High-Five counter: {count}"
   |              ^^

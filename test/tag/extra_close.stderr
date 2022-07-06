@@ -1,5 +1,5 @@
 error: encountered a closing HTML element "button" without a corresponding opening tag.
- --> test/extra_close_tag.rs:7:11
+ --> test/tag/extra_close.rs:7:11
   |
 7 |         </button> // <- random
   |           ^^^^^^

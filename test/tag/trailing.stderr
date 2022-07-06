@@ -1,5 +1,5 @@
 error: encountered a closing HTML element "button" without a corresponding opening tag.
- --> test/trailing_tag.rs:8:11
+ --> test/tag/trailing.rs:8:11
   |
 8 |         </button> // <- trailing
   |           ^^^^^^
