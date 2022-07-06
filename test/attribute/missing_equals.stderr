@@ -1,0 +1,13 @@
+error: expected `=`
+ --> test/attribute/missing_equals.rs:6:18
+  |
+6 |         <div name:"oops used a colon instead of equals">
+  |                  ^
+
+warning: unused import: `dioxus::prelude::*`
+ --> test/attribute/missing_equals.rs:1:5
+  |
+1 | use dioxus::prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default

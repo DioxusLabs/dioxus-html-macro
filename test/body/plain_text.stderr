@@ -1,0 +1,5 @@
+error: expected string literal, found identifier. hint: try wrapping the text in quotes.
+ --> test/body/plain_text.rs:6:12
+  |
+6 |            oops, I forgot to wrap it in quotes
+  |            ^^^^

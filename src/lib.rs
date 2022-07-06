@@ -69,5 +69,10 @@ fn err_msgs() {
 
     t.compile_fail("test/attribute/non_str_custom.rs");
     t.compile_fail("test/attribute/format_str.rs");
+    t.compile_fail("test/attribute/missing_equals.rs");
+    t.compile_fail("test/attribute/random_expression.rs");
     t.pass("test/attribute/passes.rs");
+
+    t.compile_fail("test/body/plain_text.rs");
+        t.pass("test/body/expression.rs");
 }

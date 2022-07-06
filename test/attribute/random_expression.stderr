@@ -1,0 +1,13 @@
+error: expected identifier
+ --> test/attribute/random_expression.rs:6:14
+  |
+6 |         <div 2 * 3>
+  |              ^
+
+warning: unused import: `dioxus::prelude::*`
+ --> test/attribute/random_expression.rs:1:5
+  |
+1 | use dioxus::prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default

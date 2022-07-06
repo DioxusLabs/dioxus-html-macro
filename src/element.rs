@@ -1,7 +1,7 @@
-use crate::prelude::*; 
+use crate::prelude::*;
 
 /// An HTML element is composed of an
-/// opening tag, an HTML body, and a closing tag. 
+/// opening tag, an HTML body, and a closing tag.
 pub struct Element {
     open_tag: OpenTag,
     html: Html,
@@ -36,9 +36,7 @@ impl ToTokens for Element {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         let Element { open_tag, html, .. } = self;
         let OpenTag {
-            name,
-            attributes,
-            ..
+            name, attributes, ..
         } = open_tag;
 
         tokens.extend(quote! {
@@ -64,9 +62,16 @@ impl Element {
 }
 
 fn unmatched_msg(error: Error, fork: &ParseStream) -> Error {
-    match fork.parse::<CloseTag>() {
-        Ok(tag) => closing(&tag.name),
-        Err(_) => error,
+    let backup = fork.fork();
+    if let Ok(tag) = fork.parse::<CloseTag>() {
+        closing(&tag.name)
+    } else if let Ok(tag) = backup.parse::<Ident>() {
+        Error::new(
+            tag.span(),
+            "expected string literal, found identifier. hint: try wrapping the text in quotes.",
+        )
+    } else {
+        error
     }
 }
 
