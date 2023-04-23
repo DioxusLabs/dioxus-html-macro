@@ -1,6 +1,6 @@
 [package]
 name = "dioxus-html-macro"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 license = "Apache-2.0"
 keywords = ["macro", "dioxus", "html", "rsx"]
@@ -14,11 +14,11 @@ authors = ["Tomas Vallotton <tvallotton@uc.cl>"]
 proc-macro = true
 
 [dependencies]
-dioxus = "0.2.4"
+dioxus = "0.3.0"
 proc-macro2 = "1.0.40"
 quote = "1.0.20"
 syn = {version = "1.0.98", features = ["full"]}
 
 [dev-dependencies]
-dioxus = { version = "0.2.4", features = ["desktop"] }
+dioxus = { version = "0.3.0", features = ["desktop"] }
 trybuild = "1.0.63"
