@@ -1,7 +1,6 @@
 use crate::prelude::*;
 
-
-/// A recursive HTML AST. 
+/// A recursive HTML AST.
 #[derive(Default)]
 pub struct Html {
     pub elements: Vec<Item>,

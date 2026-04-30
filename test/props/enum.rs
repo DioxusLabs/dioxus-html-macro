@@ -1,26 +1,23 @@
-#![allow(non_upper_case_globals)]
-#![allow(non_upper_case_globals)]
-use dioxus::prelude::*; 
+use dioxus::prelude::*;
 use dioxus_html_macro::html;
 
-
-#[derive(Props, PartialEq, Eq)]
-struct Props {
-    number_is: Parity, 
+#[derive(Props, PartialEq, Eq, Clone)]
+struct AppProps {
+    number_is: Parity,
 }
-#[derive(PartialEq, Eq)]
+
+#[derive(PartialEq, Eq, Clone)]
 enum Parity {
-    Even, 
-    Odd
+    Even,
+    Odd,
 }
 
-const App: Component<Props> = |ref s| {
-    s.render(html!( 
+#[allow(non_snake_case)]
+fn App(props: AppProps) -> Element {
+    let _ = props.number_is;
+    html!(
         <App number_is={Parity::Even}/>
-    ))
-
-}; 
-
-fn main() {
-
+    )
 }
+
+fn main() {}

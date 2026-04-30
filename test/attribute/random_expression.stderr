@@ -10,4 +10,4 @@ warning: unused import: `dioxus::prelude::*`
 1 | use dioxus::prelude::*;
   |     ^^^^^^^^^^^^^^^^^^
   |
-  = note: `#[warn(unused_imports)]` on by default
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default

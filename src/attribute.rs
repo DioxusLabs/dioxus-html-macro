@@ -1,24 +1,19 @@
-use crate::prelude::*; 
-/// An attribute can have one of the 
-/// following two structures: 
+use crate::prelude::*;
+/// An attribute can have one of the
+/// following two structures:
 /// * `ident=value`
 /// * `"custom-attr"="string-lit"
 pub struct Attribute {
     pub name: AttributeIdent,
-    pub equals: Token![=],
     pub value: RsxExpr,
 }
 
 impl Parse for Attribute {
     fn parse(input: ParseStream) -> Result<Self> {
         let name = input.parse()?;
-        let equals = input.parse()?;
+        let _: Token![=] = input.parse()?;
         let value = input.parse()?;
-        let attr = Attribute {
-            name,
-            equals,
-            value,
-        };
+        let attr = Attribute { name, value };
         attr.validate()?;
         Ok(attr)
     }
@@ -26,7 +21,7 @@ impl Parse for Attribute {
 
 impl ToTokens for Attribute {
     fn to_tokens(&self, tokens: &mut TokenStream) {
-        let Attribute { name, value, .. } = self;
+        let Attribute { name, value } = self;
         tokens.extend(quote! {
             #name: #value
         });
@@ -36,12 +31,7 @@ impl ToTokens for Attribute {
 impl Attribute {
     fn validate(&self) -> Result<()> {
         if !self.name.is_ident() && !self.value.is_str() {
-            return Err(
-                Error::new(
-                    self.value.span(),
-                "expected a string literal."
-            )
-        );
+            return Err(Error::new(self.value.span(), "expected a string literal."));
         }
         Ok(())
     }

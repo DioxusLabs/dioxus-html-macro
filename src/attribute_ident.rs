@@ -1,4 +1,4 @@
-use crate::prelude::*; 
+use crate::prelude::*;
 
 /// represents either an identifier or a string literal
 pub enum AttributeIdent {

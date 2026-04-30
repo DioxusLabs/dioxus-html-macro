@@ -1,9 +1,9 @@
 use crate::prelude::*;
 
 /// Unlike Html, HtmlNonRecursive attempts to consume
-/// the entire stream, and errors if it fails. This makes in 
-/// throw better error messages when there are trailing 
-/// closing html tags. 
+/// the entire stream, and errors if it fails. This makes in
+/// throw better error messages when there are trailing
+/// closing html tags.
 pub struct HtmlNonRecursive {
     html: Html,
 }

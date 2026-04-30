@@ -1,12 +1,12 @@
-use proc_macro2::Span;
-use syn::{token::Brace, spanned::Spanned};
 use crate::prelude::*;
+use proc_macro2::Span;
+use syn::spanned::Spanned;
 
-/// An RSX expression can either be a string literal, 
-/// or any rust expression inside curly braces. 
+/// An RSX expression can either be a string literal,
+/// or any rust expression inside curly braces.
 pub enum RsxExpr {
     LitStr(LitStr),
-    Expr { brace: Brace, expr: Expr },
+    Expr(Box<Expr>),
 }
 
 impl Parse for RsxExpr {
@@ -14,12 +14,9 @@ impl Parse for RsxExpr {
         let expr = match input.parse() {
             Ok(lit) => RsxExpr::LitStr(lit),
             Err(_) => {
-                let expr;
-                let brace = braced!(expr in input);
-                RsxExpr::Expr {
-                    expr: expr.parse()?,
-                    brace,
-                }
+                let inner;
+                braced!(inner in input);
+                RsxExpr::Expr(Box::new(inner.parse()?))
             }
         };
         Ok(expr)
@@ -30,7 +27,7 @@ impl ToTokens for RsxExpr {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         match self {
             RsxExpr::LitStr(lit) => tokens.extend(quote!(#lit)),
-            RsxExpr::Expr { expr, .. } => tokens.extend(quote!({#expr})),
+            RsxExpr::Expr(expr) => tokens.extend(quote!({#expr})),
         }
     }
 }
@@ -38,7 +35,7 @@ impl ToTokens for RsxExpr {
 impl RsxExpr {
     pub fn span(&self) -> Span {
         match self {
-            RsxExpr::Expr { expr, .. } => expr.span(),
+            RsxExpr::Expr(expr) => expr.span(),
             RsxExpr::LitStr(lit) => lit.span(),
         }
     }
